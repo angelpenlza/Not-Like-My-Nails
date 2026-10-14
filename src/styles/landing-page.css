@@ -1,0 +1,61 @@
+.landing-page-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-message {
+    background-image: var(--main-gradient);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.landing-text {
+    font-size: 24px;
+    color: white;
+    margin-top: 100px;
+    padding: 0 100px;
+    text-align: center;
+}
+
+.plan-now-button {
+    background-color: var(--primary-color);
+    padding: 18px 40;
+    border: 1px solid white; 
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 100px;
+}
+
+.popular-products-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+}
+
+.popular-product {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    border: none;
+    padding: 14px;
+    gap: 10px;
+}
+
+.popular-product-image {
+    width: 100%;
+    height: auto;
+}
+
+.popular-product-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.popular-product-price {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
