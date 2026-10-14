@@ -10,4 +10,17 @@
     );
 }
 
+[color-palette="glass"] {
+    --primary-color: rgba(255, 255, 255, 0.8);
+    --secondary-color: rgba(255, 255, 255, 0.6); 
+    --third-color: rgba(255, 255, 255, 0.4);
+    --accent-color: rgba(255, 255, 255, 0.2);
+
+    --main-gradient: linear-gradient(to top left, 
+        var(--secondary-color) 10%, 
+        var(--accent-color) 
+    );
+
+}
+
 

@@ -32,6 +32,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.popular-products-title {
+    grid-column: span 2;
 }
 
 .popular-product {

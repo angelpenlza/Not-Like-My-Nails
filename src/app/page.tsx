@@ -1,8 +1,11 @@
 'use server'
 
+import Link from "next/link";
 import { getPopularProducts } from "../database/products";
 
 export default async function Home() {
+
+  // get products from the database and format them
   const popularProducts = getPopularProducts();
   const popularProductsElements = popularProducts.map((product) => {
     return (
@@ -12,6 +15,19 @@ export default async function Home() {
         <h3 className="popular-product-price">{product.price}</h3>
       </div>
     )})
+
+  const ExploreProduct = ({ name, icon, style }: {
+    name: string,
+    icon: string,
+    style: string,
+  }) => {
+    return (
+      <div className={`explore-product ${style}`}>
+        <h3 className="explore-product-name">{name}</h3>
+        <img src={icon} alt="" className="explore-product-icon" />
+      </div>
+    )
+  }
 
   return (
     <div className="landing-page-container">
@@ -23,7 +39,33 @@ export default async function Home() {
 
       {/* popular products */}
       <div className="popular-products-container">
+        <h2 className="popular-products-title">Press Ons</h2>
         {popularProductsElements}
+      </div>
+
+      {/* explore segment */}
+      <div className="explore-segment">
+        <h1 className="explore-title">Explore</h1>
+        <Link href="/nails" className="explore-nails-link">
+          View all
+        </Link>
+        <Link href="/nails" className="explore-products">
+          <ExploreProduct 
+            name="Cartoon Cutie" 
+            icon="/icons/nails.svg" 
+            style='cartoon-cutie'
+          />
+          <ExploreProduct 
+            name="Daring Diva" 
+            icon="/icons/nails.svg" 
+            style='daring-diva'
+          />
+          <ExploreProduct 
+            name="Basic Beauties" 
+            icon="/icons/nails.svg" 
+            style='basic-beauties'
+          />
+        </Link>
       </div>
     </div>
   )
