@@ -1,6 +1,6 @@
 'use server'
 
-import Link from "next/link";
+import Explore from "@/components/explore";
 import { getPopularProducts } from "../database/products";
 
 export default async function Home() {
@@ -16,19 +16,6 @@ export default async function Home() {
       </div>
     )})
 
-  const ExploreProduct = ({ name, icon, style }: {
-    name: string,
-    icon: string,
-    style: string,
-  }) => {
-    return (
-      <div className={`explore-product ${style}`}>
-        <h3 className="explore-product-name">{name}</h3>
-        <img src={icon} alt="" className="explore-product-icon" />
-      </div>
-    )
-  }
-
   return (
     <div className="landing-page-container">
       {/* landing message */}
@@ -43,30 +30,7 @@ export default async function Home() {
         {popularProductsElements}
       </div>
 
-      {/* explore segment */}
-      <div className="explore-segment">
-        <h1 className="explore-title">Explore</h1>
-        <Link href="/nails" className="explore-nails-link">
-          View all
-        </Link>
-        <Link href="/nails" className="explore-products">
-          <ExploreProduct 
-            name="Cartoon Cutie" 
-            icon="/icons/nails.svg" 
-            style='cartoon-cutie'
-          />
-          <ExploreProduct 
-            name="Daring Diva" 
-            icon="/icons/nails.svg" 
-            style='daring-diva'
-          />
-          <ExploreProduct 
-            name="Basic Beauties" 
-            icon="/icons/nails.svg" 
-            style='basic-beauties'
-          />
-        </Link>
-      </div>
+      <Explore />
     </div>
   )
 }

@@ -1,4 +1,5 @@
 :root {
+/* main color palette*/
   --primary-color: #861657;
   --secondary-color: #b9375e;
   --third-color: #b9375e;
@@ -8,6 +9,20 @@
         var(--secondary-color) 10%, 
         var(--accent-color) 
     );
+
+/* cartoon cutie */
+    --daring-diva-primary: #abc4ff;
+    --daring-diva-secondary: #ccdbfd;
+    --daring-diva-third: #edf2fb;
+
+    --daring-diva-gradient: linear-gradient(to bottom right, 
+        var(--daring-diva-primary),
+        var(--daring-diva-secondary),
+        var(--daring-diva-third)
+    )
+/* daring diva */
+/* basic beauties */
+
 }
 
 [color-palette="glass"] {
