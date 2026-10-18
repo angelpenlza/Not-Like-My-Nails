@@ -2,6 +2,7 @@
 
 import Explore from "@/components/explore";
 import { getPopularProducts } from "../database/products";
+import About from "@/components/about";
 
 export default async function Home() {
 
@@ -31,6 +32,8 @@ export default async function Home() {
       </div>
 
       <Explore />
+
+      <About />
     </div>
   )
 }

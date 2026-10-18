@@ -70,8 +70,9 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background: var(--main-gradient);
-    color: white;
+    background: var(--daring-diva-gradient);
+    color: black;
+    height: 300px;
 }
 
 .explore-header {
@@ -105,7 +106,72 @@
     padding: 20px;
 }
 
-.daring-diva {
-    background: var(--daring-diva-gradient);
-    border-color: var(--daring-diva-primary);
+.arrow {
+    cursor: pointer;
 }
+
+
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.about-description {
+    border: 1px solid gray;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px rgb(221, 220, 220);
+    padding: 100px 70px;
+    margin: 15px 0;
+}
+
+.about-links {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px 80px;
+}
+ 
+.about-icon {
+    width: 30px;
+    height: auto;
+}
+
+.about-message {
+    width: 70%;
+    margin: 20px auto;
+}
+
+.email-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    margin: 15px auto;
+    border-radius: 20px;
+    width: 70%;
+}
+
+.email-container:focus-within {
+    outline: auto;
+}
+
+.email-input, .email-button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: inherit;
+}
+
+.email-input {
+    width: 100%;
+}
+
+.email-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.email-button {
+    cursor: pointer;
+}
+

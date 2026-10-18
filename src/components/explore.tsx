@@ -60,9 +60,9 @@ export default function Explore() {
       </div>
       { exploreProducts[currentSlide] }
       <div className="arrows">
-        <div onClick={leftSlide}>{`<`}</div>
+        <div onClick={leftSlide} className="arrow">{`<`}</div>
         {currentSlide + 1}/3
-        <div onClick={rightSlide}>{`>`}</div>
+        <div onClick={rightSlide} className="arrow">{`>`}</div>
       </div>
     </div>
   )
