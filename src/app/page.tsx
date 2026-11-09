@@ -32,7 +32,6 @@ export default async function Home() {
       </div>
 
       <Explore />
-
       <About />
     </div>
   )

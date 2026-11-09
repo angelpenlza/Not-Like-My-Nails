@@ -2,16 +2,26 @@
 
 import Link from "next/link"
 import { useState } from "react"
+import SwipeableArea from "./swipe";
 
 export default function Explore() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // takes an array of two strings ['one', 'two']
-  const ExploreProduct = ({ style }: { style: string[] }) => {
+  const styles: string[][] = [
+    ['cartoon', 'cutie'], 
+    ['daring', 'diva'],
+    ['basic', 'beauties'],
+  ]
+
+  const exploreProducts = styles.map((style) => {
     return (
-      <Link 
-        className={`explore-product ${style[0]}-${style[1]}`} 
+        <Link 
+        className={`
+          explore-product 
+          ${style[0]}-${style[1]} 
+        `} 
         href={`/nails`}
+        key={`${style[0]}-${style[1]}`}
       >
         <h3 className="explore-product-name">
           {`${style[0].charAt(0).toUpperCase() + style[0].slice(1)}
@@ -24,30 +34,16 @@ export default function Explore() {
         />
       </Link>
     )
-  }
-
-  const styles: string[][] = [
-    ['cartoon', 'cutie'], 
-    ['daring', 'diva'],
-    ['basic', 'beauties'],
-  ]
-
-  const exploreProducts = styles.map((style) => {
-    return (
-      <ExploreProduct
-        style={style}
-      />
-    )
   })
 
   const leftSlide = () => {
-    if(currentSlide - 1 < 0) setCurrentSlide(2);
-    else setCurrentSlide(currentSlide - 1);
+    if(currentSlide > 0) {
+      setCurrentSlide(currentSlide - 1);
+    }
   }
 
   const rightSlide = () => {
-    if(currentSlide + 1 > 2) setCurrentSlide(0); 
-    else setCurrentSlide(currentSlide + 1);
+    if(currentSlide < 2) setCurrentSlide(currentSlide + 1);
   }
 
   return (
@@ -58,11 +54,26 @@ export default function Explore() {
           View all
         </Link>
       </div>
-      { exploreProducts[currentSlide] }
+      <SwipeableArea 
+        styles="explore-products" 
+        width={400} // TODO: make this dynamic based on the width of the explore product
+      >
+        {exploreProducts}
+      </SwipeableArea>
       <div className="arrows">
-        <div onClick={leftSlide} className="arrow">{`<`}</div>
-        {currentSlide + 1}/3
-        <div onClick={rightSlide} className="arrow">{`>`}</div>
+        <img 
+          src='/icons/general/left-caret.svg' 
+          alt=""
+          className="arrow"
+          onClick={leftSlide}
+        />
+        { currentSlide + 1 } / 3
+        <img 
+          src='/icons/general/right-caret.svg' 
+          alt=""
+          className="arrow"
+          onClick={rightSlide}
+        />
       </div>
     </div>
   )

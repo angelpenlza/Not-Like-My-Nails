@@ -72,22 +72,48 @@
     padding: 20px;
     background: var(--daring-diva-gradient);
     color: black;
-    height: 300px;
+    width: 100vw;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: hidden;
+}
+
+:root {
+    --explore-product-width: 350px;
 }
 
 .explore-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.explore-products {
+    overflow-x: auto;       /* shows the scrollar */
+    overflow-y: hidden;  
+    scrollbar-width: none;    
+    -ms-overflow-style: none;  
+    &::-webkit-scrollbar { display: none; }
+    width: fit-content;     /* extends the div so that all content is shown */
+    max-width: 100%;        /* */
+    height: auto;
+    gap: 10px;
+    box-sizing: border-box;
 }
 
 .explore-product {
     text-decoration: none;
+    width: var(--explore-product-width);
+    height: 200px;
     border: 1px solid white;
     border-radius: 20px;
     color: inherit;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 15%);
+    display: flex;
+    overflow: auto;
 }
 
 .explore-nails-link {
@@ -104,13 +130,16 @@
     justify-content: center;
     gap: 30px;
     padding: 20px;
+    height: 50px;
+    align-items: center;
 }
 
 .arrow {
     cursor: pointer;
+    height: 100%;
+    padding: 0;
+    text-align: center;
 }
-
-
 
 .about-container {
     display: flex;
@@ -173,5 +202,10 @@
 
 .email-button {
     cursor: pointer;
+}
+
+
+.cartoon-cutie {
+    background-image: var(--cartoon-cutie-gradient);
 }
 
