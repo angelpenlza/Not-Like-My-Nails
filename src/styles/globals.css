@@ -25,15 +25,13 @@ html, body {
 
 .navbar > * {
   text-align: center;
-  padding: 20px;
+  padding: 0 20px;
   cursor: pointer;
 }
 
 .navbar-title {
-  font-size: 20px;
-  flex-grow: 2;
-  font-family: var(--font-ballet);
-  margin: 0;
+  height: var(--navbar-height);
+  padding: 0;
 }
 
 .navbar-icon {

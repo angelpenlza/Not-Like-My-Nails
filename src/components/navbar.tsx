@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Menu from "./menu";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -38,19 +39,33 @@ export default function Navbar() {
           toggleMenu();
         }}
       /> 
-      <h1 className="navbar-title">Not Like My Nails</h1>
+      
+      <Link href='/'>
+        <img 
+          src='/navbar-title.png' 
+          alt="" 
+          className="navbar-title"
+        />
+      </Link>
+
       <NavbarIcon 
         src="/icons/search.svg" 
         handleClick={() => { }}
       />
-      <NavbarIcon 
-        src="/icons/account.svg" 
-        handleClick={() => { }}
-      />
-      <NavbarIcon 
-        src="/icons/shopping.svg" 
-        handleClick={() => { }}
-      />
+      <Link href='/account'>
+        <NavbarIcon 
+          src="/icons/account.svg" 
+          handleClick={() => { }}
+        />
+      </Link>
+
+      <Link href='/shopping-cart'>
+        <NavbarIcon 
+          src="/icons/shopping.svg" 
+          handleClick={() => { }}
+        />
+      </Link>
+
       {showMenu && <Menu />}
     </div>
   )

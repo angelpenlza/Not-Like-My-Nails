@@ -3,6 +3,7 @@
 import Explore from "@/components/explore";
 import { getPopularProducts } from "../database/products";
 import About from "@/components/about";
+import Link from "next/link";
 
 export default async function Home() {
 
@@ -22,7 +23,9 @@ export default async function Home() {
       {/* landing message */}
       <div className="landing-message">
         <p className="landing-text">Plan your custom nail set with us!</p>
-        <div className="plan-now-button">Plan now</div>
+        <Link className="plan-now-button" href="/appointments">
+          Plan now
+        </Link>
       </div>
 
       {/* popular products */}

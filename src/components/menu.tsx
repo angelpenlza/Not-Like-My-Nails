@@ -10,6 +10,34 @@ export default function Menu() {
       >
         Home
       </Link>
+
+      <Link 
+        href='/nails'
+        className="menu-link"
+      >
+        All Nails
+      </Link>
+
+      <Link 
+        href="/appointments" 
+        className="menu-link"
+      >
+        Book Appointment
+      </Link>
+
+      <Link 
+        href="/shopping-cart" 
+        className="menu-link"
+      >
+        Your Cart
+      </Link>
+
+      <Link 
+        href="/account" 
+        className="menu-link"
+      >
+        Account
+      </Link>
     </div>
   )
 }
