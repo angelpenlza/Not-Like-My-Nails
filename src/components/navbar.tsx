@@ -10,12 +10,9 @@ import Link from "next/link";
 
 export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
-  const navbarRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLDivElement>(null);
   const [showMenu, setShowMenu] = useState(false);
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-
-  }
+  const toggleMenu = () => setShowMenu(!showMenu);
 
   const MenuLink = ({ path, title }: { 
     path: string,
@@ -44,28 +41,24 @@ export default function Navbar() {
     )
   }
 
-  const NavbarIcon = ({ src, handleClick }: { 
-    src: string,
-    handleClick: Function,
-  }) => {
+  const NavbarIcon = ({ path }: { path: string }) => {
     return (
+      <Link href={path}>
         <Image 
-          src={src}
+          src={`/icons${path}.svg`}
           alt=""
           width={40}
           height={40}
           className="navbar-icon"
-          onClick={() => {
-            handleClick();
-          }}
         />
+      </Link>
     )
   }
 
   const handleClickOutside = (e: MouseEvent) => {
     console.log('handling...')
     const target = e.target as Node;
-    if(!menuRef.current?.contains(target) && !navbarRef.current?.contains(target)) {
+    if(!menuRef.current?.contains(target) && !menuButtonRef.current?.contains(target)) {
       setShowMenu(false);
     }
   }
@@ -78,13 +71,18 @@ export default function Navbar() {
   }, [menuRef])
 
   return (
-    <div className="navbar" ref={navbarRef}>
-      <NavbarIcon 
-        src="/icons/menu.svg" 
-        handleClick={() => { 
-          toggleMenu();
-        }}
-      /> 
+    <div className="navbar">
+
+      <div ref={menuButtonRef}>
+        <Image 
+          src='/icons/menu.svg'
+          alt=""
+          height={40}
+          width={40}
+          onClick={toggleMenu}
+          className="navbar-icon"
+        />
+      </div>
       
       <Link href='/'>
         <img 
@@ -94,23 +92,17 @@ export default function Navbar() {
         />
       </Link>
 
-      <NavbarIcon 
-        src="/icons/search.svg" 
-        handleClick={() => { }}
+      <Image 
+        src='/icons/search.svg'
+        alt=""
+        height={40}
+        width={40}
+        className="navbar-icon"
       />
-      <Link href='/account'>
-        <NavbarIcon 
-          src="/icons/account.svg" 
-          handleClick={() => { }}
-        />
-      </Link>
 
-      <Link href='/shopping-cart'>
-        <NavbarIcon 
-          src="/icons/shopping.svg" 
-          handleClick={() => { }}
-        />
-      </Link>
+      <NavbarIcon path="/account" />
+
+      <NavbarIcon path="/shopping-cart" />
 
       {showMenu && <Menu />}
     </div>
