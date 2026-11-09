@@ -15,15 +15,12 @@ export default function SwipeableArea({ children, styles, width }: {
     console.log('scrolling')
     const scrollLeft = areaRef.current?.scrollLeft || 0;
     if(scrollLeft - refX.current < 0) {
-      console.log('scrolling left')
       setDirection('left');
     }
     if(scrollLeft - refX.current > 0) {
-      console.log('scrolling right')
       setDirection('right');
     }
     refX.current = scrollLeft;
-    console.log("refX.current", refX.current)
     setCurrentSlide(refX.current / 10);
   }
   
@@ -35,8 +32,6 @@ export default function SwipeableArea({ children, styles, width }: {
   }, [])
 
   useEffect(() => {
-    console.log('width', width)
-    console.log('refX.current changed', Math.ceil(refX.current / width))
     let snapTo = 0;
     if(direction === 'left') {
       snapTo = Math.floor(refX.current / width) * width;

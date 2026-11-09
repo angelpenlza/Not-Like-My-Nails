@@ -1,4 +1,8 @@
 // TODO: Make modal more clean for better UX.
+// specifics: weird cuts between pages, probably caused
+//  by order of events 
+// menu icons are too small now because of an update, as is,
+//  users must be very precise to acheive desired effects. 
 
 'use client'
 
@@ -56,7 +60,6 @@ export default function Navbar() {
   }
 
   const handleClickOutside = (e: MouseEvent) => {
-    console.log('handling...')
     const target = e.target as Node;
     if(!menuRef.current?.contains(target) && !menuButtonRef.current?.contains(target)) {
       setShowMenu(false);
@@ -101,7 +104,6 @@ export default function Navbar() {
       />
 
       <NavbarIcon path="/account" />
-
       <NavbarIcon path="/shopping-cart" />
 
       {showMenu && <Menu />}
