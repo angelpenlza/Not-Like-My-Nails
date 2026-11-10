@@ -93,13 +93,13 @@
 }
 
 .explore-products {
-    overflow-x: auto;       /* shows the scrollar */
+    overflow-x: auto;   
     overflow-y: hidden;  
     scrollbar-width: none;    
     -ms-overflow-style: none;  
     &::-webkit-scrollbar { display: none; }
-    width: fit-content;     /* extends the div so that all content is shown */
-    max-width: 100%;        /* */
+    width: fit-content;    
+    max-width: 100%;       
     height: auto;
     gap: 10px;
     box-sizing: border-box;

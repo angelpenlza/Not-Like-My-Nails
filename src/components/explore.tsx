@@ -1,80 +1,91 @@
 'use client'
 
-import Link from "next/link"
-import { useState } from "react"
-import SwipeableArea from "./swipe";
+import { useEffect, useRef, useState } from "react"
+import Link from "next/link";
+
+const sections: string[] = [
+  'cartoon-cutie',
+  'daring-diva',
+  'basic-beauties',
+]
 
 export default function Explore() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const styles: string[][] = [
-    ['cartoon', 'cutie'], 
-    ['daring', 'diva'],
-    ['basic', 'beauties'],
+  const areaRef = useRef<HTMLDivElement>(null);
+  const currentPos = useRef(0);
+  const [currentSection, setCurrentSection] = useState(0);
+  const sectionRefs = [
+    useRef<HTMLAnchorElement>(null),
+    useRef<HTMLAnchorElement>(null),
+    useRef<HTMLAnchorElement>(null),
   ]
 
-  const exploreProducts = styles.map((style) => {
-    return (
-        <Link 
-        className={`
-          explore-product 
-          ${style[0]}-${style[1]} 
-        `} 
-        href={`/nails`}
-        key={`${style[0]}-${style[1]}`}
-      >
-        <h3 className="explore-product-name">
-          {`${style[0].charAt(0).toUpperCase() + style[0].slice(1)}
-            ${style[1].charAt(0).toUpperCase() + style[1].slice(1)}`}
-        </h3>
-        <img 
-          src={`/icons/${style[0]}-${style[1]}.svg`} 
-          alt="" 
-          className="explore-product-icon" 
-        />
-      </Link>
-    )
-  })
-
-  const leftSlide = () => {
-    if(currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    }
+  const handleLeftArrow = () => {
+    if(currentSection > 0) setCurrentSection(currentSection - 1);
   }
 
-  const rightSlide = () => {
-    if(currentSlide < 2) setCurrentSlide(currentSlide + 1);
+  const handleRightArrow = () => {
+    if(currentSection < 2) setCurrentSection(currentSection + 1);
   }
+
+  // const handleScroll = () => {
+  //   const scroll = areaRef.current?.scrollLeft || 0;
+  //   console.log('hanlding scroll: ', scroll)
+  //   if(scroll - currentPos.current < 0) {
+  //     console.log('left');
+  //     handleLeftArrow();
+  //   }
+  //   if(scroll - currentPos.current > 0) {
+  //     console.log('right');
+  //     handleRightArrow();
+  //   }
+  //   currentPos.current = scroll;
+  // }
+
+  useEffect(() => {
+    sectionRefs[currentSection].current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start',
+    });
+  }, [currentSection])  
+
+  // useEffect(() => {
+  //   areaRef.current?.addEventListener('scrollend', handleScroll);
+  //   return () => areaRef.current?.removeEventListener('scrollend', handleScroll);
+  // }, [])
 
   return (
     <div className="explore-segment">
-      <div className="explore-header">
-        <h2 className="explore-title">Explore</h2>
-        <Link href="/nails" className="explore-nails-link">
-          View all
-        </Link>
+      <h1 className="explore-title">Explore</h1>
+      <div className="explore-products swipeable-area" ref={areaRef}>
+        {
+          sections.map((section, index) => {
+            return (
+              <Link
+                className={`explore-product ${section}`}
+                key={index}
+                ref={sectionRefs[index]}
+                href='/nails'
+              >
+                {section}
+              </Link>
+            );
+          })
+        }
       </div>
-      <SwipeableArea 
-        styles="explore-products" 
-        width={400} // TODO: make this dynamic based on the width of the explore product
-      >
-        {exploreProducts}
-      </SwipeableArea>
       <div className="arrows">
         <img 
-          src='/icons/general/left-caret.svg' 
-          alt=""
+          src='icons/general/left-caret.svg' 
           className="arrow"
-          onClick={leftSlide}
+          onClick={handleLeftArrow}
         />
-        { currentSlide + 1 } / 3
+          {currentSection + 1}/3
         <img 
-          src='/icons/general/right-caret.svg' 
-          alt=""
+          src='icons/general/right-caret.svg' 
           className="arrow"
-          onClick={rightSlide}
+          onClick={handleRightArrow}
         />
       </div>
     </div>
-  )
+  );
 }
