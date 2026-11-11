@@ -115,6 +115,7 @@
     padding: 20px;
     display: flex;
     overflow: auto;
+    scroll-snap-align: start;
 }
 
 .explore-nails-link {

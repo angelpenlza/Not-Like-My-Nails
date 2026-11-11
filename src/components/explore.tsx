@@ -11,7 +11,6 @@ const sections: string[] = [
 
 export default function Explore() {
   const areaRef = useRef<HTMLDivElement>(null);
-  const currentPos = useRef(0);
   const [currentSection, setCurrentSection] = useState(0);
   const sectionRefs = [
     useRef<HTMLAnchorElement>(null),
@@ -27,20 +26,6 @@ export default function Explore() {
     if(currentSection < 2) setCurrentSection(currentSection + 1);
   }
 
-  // const handleScroll = () => {
-  //   const scroll = areaRef.current?.scrollLeft || 0;
-  //   console.log('hanlding scroll: ', scroll)
-  //   if(scroll - currentPos.current < 0) {
-  //     console.log('left');
-  //     handleLeftArrow();
-  //   }
-  //   if(scroll - currentPos.current > 0) {
-  //     console.log('right');
-  //     handleRightArrow();
-  //   }
-  //   currentPos.current = scroll;
-  // }
-
   useEffect(() => {
     sectionRefs[currentSection].current?.scrollIntoView({
       behavior: 'smooth',
@@ -48,11 +33,6 @@ export default function Explore() {
       inline: 'start',
     });
   }, [currentSection])  
-
-  // useEffect(() => {
-  //   areaRef.current?.addEventListener('scrollend', handleScroll);
-  //   return () => areaRef.current?.removeEventListener('scrollend', handleScroll);
-  // }, [])
 
   return (
     <div className="explore-segment">
