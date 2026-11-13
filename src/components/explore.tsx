@@ -1,3 +1,6 @@
+// TODO: swiping does not affect currentSelection, 
+//  making use between that and arrows buggy
+
 'use client'
 
 import { useEffect, useRef, useState } from "react"
@@ -11,6 +14,7 @@ const sections: string[] = [
 
 export default function Explore() {
   const areaRef = useRef<HTMLDivElement>(null);
+  const prevPos = useRef(0);
   const [currentSection, setCurrentSection] = useState(0);
   const sectionRefs = [
     useRef<HTMLAnchorElement>(null),

@@ -97,6 +97,13 @@ html, body {
   border: 1px solid black;
 }
 
+.form-page {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  margin: auto;
+}
+
 
 
 
